@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+<script src="https://localhost:7254/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0"></script>
+<br>
+<h1>Busca tu serie favorita:</h1>
+<table class="table">
+<div class="flexFix">
+@{
+  int i =0;
+foreach(Serie s in ViewBag.Series){
+  
+ <div class="card" style="width: 18rem;">
+  <img src="@s.ImagenSerie" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">@s.Nombre</h5>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="ModalSeries('@i',indexCont ,0)">
+  Más información
+</button>
+
+  </div>
+</div>
+i++;
+}
+}
+</div>
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="nombreSerie">Modal title</h1>
+        <p hidden="true" id="indexCont"></p>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="cartita">
+      </div>
+      <div class="modal-footer">
+        
+        <button type="button" class="btn btn-success" onclick="ModalSeries('@i',indexCont ,1)">Información general</button>
+         <button type="button" class="btn btn-info" onclick="ModalActores(indexCont)">Actores</button>
+        <button type="button" class="btn btn-primary" onclick="ModalTemporadas(indexCont)">Temporadas</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+</table>
